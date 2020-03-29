@@ -13,6 +13,9 @@
             <input formControlName="password" class="input-field" />
         </div>
     </div>
+    <div class="remember-me">
+        <mat-checkbox formControlName="rememberMe" color="primary">Remember me</mat-checkbox>
+    </div>
 </form>
 
 <div class="buttons-container">
@@ -20,6 +23,7 @@
         <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="2" color="accent" class="spinner"></mat-spinner>
         <button 
             [disabled]="!signInForm.valid || isLoading"
+            (click)="onSignIn()"
             mat-raised-button 
             color="primary">
             

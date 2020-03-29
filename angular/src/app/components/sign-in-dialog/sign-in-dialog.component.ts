@@ -1,3 +1,5 @@
+import { API } from '../../configs/api.config';
+import { BackendService } from '../../services/backend-service/backend-service';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,8 +16,17 @@ export class SignInDialogComponent {
         {
             email: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required),
+            rememberMe: new FormControl(false, Validators.required),
         },
     );
 
-    constructor(public dialogRef: MatDialogRef<SignInDialogComponent>) {}
+    constructor(private dialogRef: MatDialogRef<SignInDialogComponent>, private backendService: BackendService) {}
+
+    public onSignIn(): void {
+        // TODO Set token from response
+        // TODO Error handling
+        this.backendService
+            .post$(API.USER_ACTIONS.SIGNIN, this.signInForm.value)
+            .subscribe(() => this.dialogRef.close());
+    }
 }

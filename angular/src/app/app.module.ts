@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserActionButtonsComponent } from './components/user-action-buttons/user-action-buttons.component';
@@ -20,7 +21,7 @@ import { SignUpDialogComponent } from './components/sign-up-dialog/sign-up-dialo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha';
 
-const ANGULAR_MATERIAL_MODULES = [MatButtonModule, MatTabsModule, MatDialogModule, MatProgressSpinnerModule];
+const ANGULAR_MATERIAL_MODULES = [MatButtonModule, MatTabsModule, MatDialogModule, MatProgressSpinnerModule, MatCheckboxModule];
 
 @NgModule({
     declarations: [

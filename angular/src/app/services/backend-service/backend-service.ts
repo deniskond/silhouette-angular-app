@@ -1,18 +1,27 @@
+import { CsrfTokenService } from './../csrf-token-service/csrf-token.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
 })
 export class BackendService {
-    constructor(protected httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private csrfTokenService: CsrfTokenService) {}
 
     public post$<T>(url: string, postParams?: Record<string, string>): Observable<T> {
-        return this.httpClient.post<T>(url, this.prepareHttpParams(postParams), { withCredentials: true });
+        return this.csrfTokenService.getCsrfToken$().pipe(
+            switchMap((csrfToken: string) => this.httpClient.post<T>(url, this.prepareHttpRequestBody(postParams), {
+                headers: {
+                    'Csrf-Token': csrfToken,
+                },
+                withCredentials: true,
+            })),
+        );
     }
 
-    private prepareHttpParams(params?: Record<string, string>): HttpParams {
+    private prepareHttpRequestBody(params?: Record<string, string>): HttpParams {
         let httpParams = new HttpParams();
 
         if (params) {

@@ -13,15 +13,13 @@ import { EMAIL_VALIDATION_REGEXP } from './helpers/email-validation-regexp';
 })
 export class SignUpDialogComponent {
     public isLoading = false;
-    public signUpForm = new FormGroup(
-        {
-            firstName: new FormControl('', Validators.required),
-            lastName: new FormControl('', Validators.required),
-            email: new FormControl('', Validators.compose([Validators.required, this.validateEmail.bind(this)])),
-            password: new FormControl('', Validators.required),
-            captchaResponse: new FormControl('', Validators.required),
-        },
-    );
+    public signUpForm = new FormGroup({
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required),
+        email: new FormControl('', Validators.compose([Validators.required, this.validateEmail.bind(this)])),
+        password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+        captchaResponse: new FormControl('', Validators.required),
+    });
 
     constructor(private dialogRef: MatDialogRef<SignUpDialogComponent>, private backendService: BackendService) {}
 
@@ -30,7 +28,11 @@ export class SignUpDialogComponent {
     }
 
     public onSignUp(): void {
-        this.backendService.post$(API.USER_ACTIONS.SIGNUP, this.signUpForm.value).subscribe(console.log);
+        // TODO Error handling
+        // TODO Display message about email validation
+        this.backendService
+            .post$(API.USER_ACTIONS.SIGNUP, this.signUpForm.value)
+            .subscribe(() => this.dialogRef.close());
     }
 
     private validateEmail({ value: email }: AbstractControl): Record<string, string> | null {
