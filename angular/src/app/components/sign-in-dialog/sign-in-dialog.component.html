@@ -1,0 +1,40 @@
+<h2 class="dialog-header">Sign In</h2>
+
+<form [formGroup]="signInForm">
+    <div class="input-container">
+        <div class="input-caption">E-mail <span class="required"></span></div> 
+        <div>
+            <input formControlName="email" class="input-field" />
+        </div>
+    </div>
+    <div class="input-container">
+        <div class="input-caption">Password <span class="required"></span></div> 
+        <div>
+            <input formControlName="password" class="input-field" />
+        </div>
+    </div>
+</form>
+
+<div class="buttons-container">
+    <div class="dialog-button">
+        <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="2" color="accent" class="spinner"></mat-spinner>
+        <button 
+            [disabled]="!signInForm.valid || isLoading"
+            mat-raised-button 
+            color="primary">
+            
+            Submit
+        </button>
+
+    </div>
+
+    <div class="dialog-button">
+        <button 
+            [disabled]="isLoading"
+            mat-raised-button 
+            color="accent">
+            
+            Forgot password
+        </button>
+    </div>
+</div>
