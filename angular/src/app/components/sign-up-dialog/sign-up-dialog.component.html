@@ -1,0 +1,44 @@
+<h2 class="dialog-header">Sign Up</h2>
+
+<form [formGroup]="signUpForm">
+    <div class="input-container">
+        <div class="input-caption">First Name <span class="required"></span></div> 
+        <div>
+            <input formControlName="firstName" class="input-field" />
+        </div>
+    </div>
+    <div class="input-container">
+        <div class="input-caption">Last Name <span class="required"></span></div> 
+        <div>
+            <input formControlName="lastName" class="input-field" />
+        </div>
+    </div>
+    <div class="input-container">
+        <div class="input-caption">E-mail <span class="required"></span></div> 
+        <div>
+            <input formControlName="email" class="input-field" />
+        </div>
+    </div>
+    <div class="input-container">
+        <div class="input-caption">Password <span class="required"></span></div> 
+        <div>
+            <input formControlName="password" class="input-field" type="password" />
+        </div>
+    </div>
+    <div class="recaptcha">
+        <!-- TODO Get site key from env -->
+        <re-captcha (resolved)="recaptchaResolved($event)" siteKey="6Lc_3vkSAAAAAIFjEAdwbmeAzhfisMcfXQfW_-jO"></re-captcha>
+    </div>
+</form>
+
+<div class="dialog-button">
+    <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="2" color="accent" class="spinner"></mat-spinner>
+    <button 
+        [disabled]="!signUpForm.valid || isLoading"
+        (click)="onSignUp()"
+        mat-raised-button 
+        color="primary">
+        
+        Submit
+    </button>
+</div>

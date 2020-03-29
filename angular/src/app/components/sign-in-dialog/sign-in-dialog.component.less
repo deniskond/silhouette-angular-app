@@ -1,0 +1,76 @@
+:host {
+    display: block;
+    margin: 12px;
+    margin-bottom: 4px;
+}
+
+.dialog-header {
+    margin-bottom: 28px;
+    font-size: 24px;
+}
+
+.input-container {
+    font-size: 16px;
+    display: flex;
+    margin-top: 12px;
+
+    .input-caption {
+        width: 100px;
+        margin-right: 16px;
+        line-height: 28px;
+    }
+
+    .input-field {
+        height: 28px;
+        font-size: 16px;
+        width: 216px;
+        padding-left: 4px;
+        border-radius: 4px;
+        border-style: ridge;
+        outline: none;
+
+        &.password {
+            font-family: bebas;
+            letter-spacing: 2px;
+        }
+    }
+
+    .field-error {
+        color: red;
+        margin-top: 6px;
+    }
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+
+    &:last-of-type {
+        margin-left: 12px;
+    }
+}
+
+.spinner {
+    position: absolute;
+    top: 8px;
+}
+
+.required {
+    color: red;
+
+    &::after {
+        content: '*';
+    }
+}
+
+.remember-me {
+    margin-top: 16px;
+    font-size: 16px;
+}
