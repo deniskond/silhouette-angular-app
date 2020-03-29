@@ -25,12 +25,17 @@
             <input formControlName="password" class="input-field" />
         </div>
     </div>
+    <div class="recaptcha">
+        <!-- TODO Get site key from env -->
+        <re-captcha (resolved)="recaptchaResolved($event)" siteKey="6Lc_3vkSAAAAAIFjEAdwbmeAzhfisMcfXQfW_-jO"></re-captcha>
+    </div>
 </form>
 
 <div class="dialog-button">
     <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="2" color="accent" class="spinner"></mat-spinner>
     <button 
         [disabled]="!signUpForm.valid || isLoading"
+        (click)="onSignUp()"
         mat-raised-button 
         color="primary">
         

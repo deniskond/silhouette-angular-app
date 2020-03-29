@@ -1,3 +1,5 @@
+import { API } from '../../configs/api.config';
+import { BackendService } from '../../services/backend-service/backend-service';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -17,10 +19,19 @@ export class SignUpDialogComponent {
             lastName: new FormControl('', Validators.required),
             email: new FormControl('', Validators.compose([Validators.required, this.validateEmail.bind(this)])),
             password: new FormControl('', Validators.required),
+            captchaResponse: new FormControl('', Validators.required),
         },
     );
 
-    constructor(public dialogRef: MatDialogRef<SignUpDialogComponent>) {}
+    constructor(private dialogRef: MatDialogRef<SignUpDialogComponent>, private backendService: BackendService) {}
+
+    public recaptchaResolved(captchaResponse: string): void {
+        this.signUpForm.get('captchaResponse').setValue(captchaResponse);
+    }
+
+    public onSignUp(): void {
+        this.backendService.post$(API.USER_ACTIONS.SIGNUP, this.signUpForm.value).subscribe(console.log);
+    }
 
     private validateEmail({ value: email }: AbstractControl): Record<string, string> | null {
         return EMAIL_VALIDATION_REGEXP.test(String(email).toLowerCase()) ? null : { email: 'Wrong e-mail format' };

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "ng serve --open --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +21,10 @@
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
+    "ng-mocks": "^9.2.0",
+    "ng-recaptcha": "^5.0.0",
     "rxjs": "~6.5.4",
+    "ts-mockito": "^2.5.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

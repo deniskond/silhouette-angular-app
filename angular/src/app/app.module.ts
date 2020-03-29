@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SignInDialogComponent } from './components/sign-in-dialog/sign-in-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SignUpDialogComponent } from './components/sign-up-dialog/sign-up-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 const ANGULAR_MATERIAL_MODULES = [MatButtonModule, MatTabsModule, MatDialogModule, MatProgressSpinnerModule];
 
@@ -40,8 +42,9 @@ const ANGULAR_MATERIAL_MODULES = [MatButtonModule, MatTabsModule, MatDialogModul
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+        RecaptchaModule,
+        HttpClientModule,
     ],
-    providers: [],
     bootstrap: [AppComponent],
     entryComponents: [SignUpDialogComponent, SignInDialogComponent],
 })
